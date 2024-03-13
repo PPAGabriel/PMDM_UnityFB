@@ -117,5 +117,42 @@ Después de iniciar:
 
 ## Actualizar datos en la base de datos segun avance el juego, por ejemplo, los puntos recogidos, las vidas, etc. Esto tiene que ser particular para cada jugador. Pensar que el juego lo juegan muchos jugadores y comparten la base de datos
 
+Haciendo referencia a nuestro PlayerController, tenemos acceso a la variable "count", de manera que la utilicemos para modificar nuestra base de datos.
+
+>>  public PlayerController player1;
+
+>[!IMPORTANT]
+> La variable debe ser pública para tener acceso a ella en nuestro Realtime.cs
+
+```csharp
+       void Start()
+    {
+		//obtenemos el player1
+		player1=GameObject.Find("Player").GetComponent<PlayerController>();
+        ...
+        ...
+            // Update is called once per frame
+    void Update()
+    {
+		//Actualizo la base de datos cada frame
+		_refClientes.Child(SystemInfo.deviceUniqueIdentifier).Child("puntos").SetValueAsync(player1.count);
+    }
+```
+
+En este caso, la variable `_refClientes` hace referencia a la base de datos de FireBase, en la cual se encuentra la información de los elementos que queremos modificar. Al realizarlo en nuestro 'Update', se actualiza la base de datos cada frame.
+
+Como resultado, tenemos el siguiente:
+
+Sin colisionar con un bloque:
+
+![img_7.png](media%2Fimg_7.png)
+
+Al colisionar con los bloques:
+
+![img_8.png](media%2Fimg_8.png)
+
+---
+
+# Espero esta información sea de ayuda! :smile:
 
 
