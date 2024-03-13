@@ -46,9 +46,8 @@ public class Realtime : MonoBehaviour
 		//Definimos la referencia de la moneda
         _refMoneda = _db.GetReference("prefabs");
 
-		//Definimos la referencia a jugador1
         
-        // Recogemos todos los valores de Clientes
+        // Recogemos todos los valores de Prefabs
         _refMoneda.GetValueAsync().ContinueWithOnMainThread(task => {
                 if (task.IsFaulted) {
                     // Handle the error...
